@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bnv_pose"
+        android:icon="@drawable/ic_bottom_home_no_select"
+        android:title="홈" />
+    <item
+        android:id="@+id/bnv_camera"
+        android:icon="@drawable/ic_alarm_svgrepo_com"
+        android:title="알림설정" />
+    <item
+        android:id="@+id/bnv_home"
+        android:icon="@drawable/ic_bottom_search_no_select"
+        android:title="검색" />
+    <item
+        android:id="@+id/bnv_board"
+        android:icon="@drawable/ic_bottom_locker_no_select"
+        android:title="마이페이지" />
+</menu>
