@@ -34,7 +34,10 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bnv_camera -> {
-
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.mainFragment, AlarmFragmnet())
+                        .commitAllowingStateLoss()
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bnv_home -> {
                 }
