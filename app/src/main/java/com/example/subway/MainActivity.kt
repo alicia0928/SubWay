@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bnv_board -> {
-
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.mainFragment, MypageFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnNavigationItemSelectedListener true
                 }
             }
             false
