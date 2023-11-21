@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bnv_home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.mainFragment, InformationFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.bnv_board -> {
 
