@@ -1,10 +1,14 @@
 package com.example.subway
 
+import android.app.AlertDialog
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.infomation_fragment.*
@@ -31,6 +35,27 @@ class InformationFragment : Fragment(){
 
         // 어댑터를 스피너에 적용
         spinner.adapter = adapter
+
+        val button2: Button = view.findViewById(R.id.button2)
+        button2.setOnClickListener{
+            showMapDialog()
+        }
         return view
+    }
+    private fun showMapDialog(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("4호선 노선도")
+
+        val imageView = ImageView(requireContext())
+        val drawable: Drawable? = requireContext().resources.getDrawable(R.drawable.subway4line)
+        imageView.setImageDrawable(drawable)
+
+        builder.setView(imageView)
+
+        builder.setPositiveButton("닫기") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 }

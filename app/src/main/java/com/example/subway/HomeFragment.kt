@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import androidx.fragment.app.Fragment
 
 class HomeFragment: Fragment(){
@@ -12,6 +13,12 @@ class HomeFragment: Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.homefragment, container, false)
+        val rootView = inflater.inflate(R.layout.homefragment, container, false)
+        val webView = rootView.findViewById<WebView>(R.id.webView)
+
+        webView.settings.javaScriptEnabled = true
+        webView.loadUrl("https://news.naver.com/")
+
+        return rootView
     }
 }
