@@ -24,14 +24,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         initBottomNavigation()
 
-        //val toolbar: Toolbar = findViewById(R.id.toolbar)
-        //        //setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        drawer_layout = findViewById<DrawerLayout>(R.id.drawer_layout)
         navigation_view = findViewById<NavigationView>(R.id.navigation_view)
         navigation_view.setNavigationItemSelectedListener(this)
     }
