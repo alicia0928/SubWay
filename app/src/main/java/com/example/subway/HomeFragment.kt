@@ -14,10 +14,6 @@ class HomeFragment: Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.homefragment, container, false)
-        val webView = rootView.findViewById<WebView>(R.id.webView)
-
-        webView.settings.javaScriptEnabled = true
-        webView.loadUrl("https://news.naver.com/")
 
         return rootView
     }
