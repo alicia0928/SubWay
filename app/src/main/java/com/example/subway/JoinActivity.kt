@@ -2,9 +2,7 @@ package com.example.subway
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -47,6 +45,16 @@ class JoinActivity : AppCompatActivity() {
         mInflater.inflate(R.menu.phone_oper, menu)
 
         return true
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        var mInflater = this.menuInflater
+        if(v === btn_oper){
+            mInflater.inflate(R.menu.phone_oper, menu)
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
