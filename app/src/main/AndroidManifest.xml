@@ -20,6 +20,18 @@
             android:name=".MainActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".JoinActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

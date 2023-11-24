@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bnv_skt"
+        android:title="SKT" />
+    <item
+        android:id="@+id/bnv_uPlus"
+        android:title="LG U+" />
+    <item
+        android:id="@+id/bnv_kt"
+        android:title="KT" />
+    <item
+        android:id="@+id/bnv_etc"
+        android:title="알뜰폰" />
+
+</menu>
