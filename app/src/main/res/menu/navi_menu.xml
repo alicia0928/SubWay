@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_home"
+        android:title="홈" />
+    <item
+        android:id="@+id/item_alarm"
+        android:title="알림 설정" />
+    <item
+        android:id="@+id/item_info"
+        android:title="지하철 정보" />
+    <item
+        android:id="@+id/item_my"
+        android:title="마이페이지" />
+    출처: https://soohyun6879.tistory.com/77 [코딩기록:티스토리]
+
+</menu>

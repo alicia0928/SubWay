@@ -24,6 +24,14 @@
             android:name=".MainStartActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".JoinActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
