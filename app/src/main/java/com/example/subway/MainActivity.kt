@@ -46,16 +46,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.item_home->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, HomeFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_alarm->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, AlarmFragmnet())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_info-> {
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, InformationFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_my->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, MypageFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
         }
         return false

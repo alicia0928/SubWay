@@ -28,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
         btn_join = findViewById<TextView>(R.id.btn_join)
         btn_login = findViewById<Button>(R.id.btn_login)
+        edit_id = findViewById<EditText>(R.id.edit_id)
+        edit_pw = findViewById<EditText>(R.id.edit_pw)
 
         btn_join.setOnClickListener{
             try {
@@ -41,13 +43,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_login.setOnClickListener{
-            try {
-                Thread.sleep(500) // 0.5초 동안 잠시 잠재우기
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
+            if (edit_id != null && edit_pw != null){
+                try {
+                    Thread.sleep(500) // 0.5초 동안 잠시 잠재우기
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+            else{
+                
             }
         }
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="operList">
+        <item>SKT</item>
+        <item>LG U+</item>
+        <item>KT</item>
+        <item>알뜰폰</item>
+    </string-array>
+
+</resources>

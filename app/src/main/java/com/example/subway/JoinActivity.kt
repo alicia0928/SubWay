@@ -3,11 +3,14 @@ package com.example.subway
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.PopupMenu
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.content.ContextCompat.getSystemService
+
+
 
 class JoinActivity : AppCompatActivity() {
 
@@ -17,66 +20,28 @@ class JoinActivity : AppCompatActivity() {
     lateinit var edit_pw_join : EditText
     lateinit var edit_pw_check : EditText
     lateinit var edit_name : EditText
-    lateinit var btn_oper : Button
+    lateinit var spin_oper : Spinner
     lateinit var edit_phone : EditText
-    lateinit var btn_check : Button
     lateinit var btn_next : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.join)
 
         baseLayout = findViewById<LinearLayout>(R.id.baseLayout)
-        btn_oper = findViewById<Button>(R.id.btn_oper) as Button
-        registerForContextMenu(btn_oper)
+        spin_oper = findViewById<Spinner>(R.id.spin_oper)
         btn_next = findViewById<Button>(R.id.btn_next)
-
 
         btn_next.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        val mInflater : MenuInflater = menuInflater
-        mInflater.inflate(R.menu.phone_oper, menu)
+        spin_oper.adapter = ArrayAdapter.createFromResource(this, R.array.operList, android.R.layout.simple_spinner_item)
 
-        return true
-    }
-
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-
-        var mInflater = this.menuInflater
-        if(v === btn_oper){
-            mInflater.inflate(R.menu.phone_oper, menu)
-        }
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        super.onOptionsItemSelected(item)
-        when(item.itemId){
-            R.id.bnv_skt -> {
-                btn_oper.setText("SKT")
-                return true
-            }
-            R.id.bnv_uPlus -> {
-                btn_oper.setText("LG U+")
-                return true
-            }
-            R.id.bnv_kt -> {
-                btn_oper.setText("KT")
-                return true
-            }
-            R.id.bnv_etc -> {
-                btn_oper.setText("알뜰폰")
-                return true
-            }
-        }
-        return false
-    }
 }
