@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/Edidttext"
+                android:id="@+id/editText1"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -208,6 +208,16 @@
             app:layout_constraintEnd_toEndOf="@+id/textView20"
             app:layout_constraintStart_toStartOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
