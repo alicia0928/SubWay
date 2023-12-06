@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface APIS {
     //post -> php 파일 주소
     @FormUrlEncoded
-    @POST(MyApp.Example_url)
+    @POST("signup_process.php?mode=register")
     @Headers(
         "accept: application/json",
         "content-type: application/x-www-form-urlencoded; charset=utf-8"
@@ -30,7 +30,7 @@ interface APIS {
 
     companion object { // static 처럼 공유객체로 사용가능함. 모든 인스턴스가 공유하는 객체로서 동작함.
         //서버 IP만 입력해주세요~
-        private const val BASE_URL = "http://localhost/register.php"
+        private const val BASE_URL = "http://localhost/"
         fun create(): APIS {
             val gson: Gson = GsonBuilder().setLenient().create();
             return Retrofit.Builder()
