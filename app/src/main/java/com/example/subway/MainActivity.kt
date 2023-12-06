@@ -24,14 +24,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         initBottomNavigation()
 
-        //val toolbar: Toolbar = findViewById(R.id.toolbar)
-        //        //setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_dehaze_black_24dp)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        drawer_layout = findViewById<DrawerLayout>(R.id.drawer_layout)
         navigation_view = findViewById<NavigationView>(R.id.navigation_view)
         navigation_view.setNavigationItemSelectedListener(this)
     }
@@ -49,16 +46,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.item_home->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, HomeFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_alarm->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, AlarmFragmnet())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_info-> {
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, InformationFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
             R.id.item_my->{
-
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainFragment, MypageFragment())
+                    .commitAllowingStateLoss()
+                return true
             }
         }
         return false

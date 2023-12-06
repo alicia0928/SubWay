@@ -131,13 +131,13 @@
                 android:layout_marginRight="38dp"
                 android:weightSum="10">
 
-                <Button
-                    android:id="@+id/btn_oper"
-                    android:layout_width="72dp"
+                <Spinner
+                    android:id="@+id/spin_oper"
+                    android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="통신사"
+                    android:hint="통신사"
+                    android:paddingVertical="20dp"
                     android:textColor="#000000"
                     android:textSize="16sp" />
 
@@ -150,15 +150,7 @@
                     android:textSize="12sp"
                     android:layout_gravity="center" />
 
-                <Button
-                    android:id="@+id/btn_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="인증번호"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
+
 
             </LinearLayout>
 
