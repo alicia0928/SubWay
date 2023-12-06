@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationView
 
 class MypageFragment : Fragment(){
+    lateinit var editText5 : EditText
+    lateinit var textView28 : TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -16,8 +20,8 @@ class MypageFragment : Fragment(){
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.mypage_fragment, container, false)
 
-        val editText5 = view.findViewById<EditText>(R.id.editText5)
-        val textView28 = view.findViewById<TextView>(R.id.textView28)
+        editText5 = view.findViewById<EditText>(R.id.editText5)
+        textView28 = view.findViewById<TextView>(R.id.textView28)
 
         textView28.text = "sungShinLover1"
 

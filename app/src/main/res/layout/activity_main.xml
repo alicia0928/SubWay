@@ -55,19 +55,14 @@
 
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/Amain_drawer"
-        android:layout_width="280dp"
+        layout="@layout/activity_main_drawer"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         app:layout_constraintBottom_toTopOf="@+id/Amain_bnv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Amain_toolbar">
-
-        <include
-            android:id="@+id/Amain_drawer_menu"
-            layout="@layout/side_menu" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Amain_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,8 +56,8 @@
                 android:layout_marginTop="10dp"
                 android:text="방향:"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/Edidttext"
-                app:layout_constraintTop_toBottomOf="@+id/Edidttext" />
+                app:layout_constraintStart_toStartOf="@+id/editText1"
+                app:layout_constraintTop_toBottomOf="@+id/editText1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
