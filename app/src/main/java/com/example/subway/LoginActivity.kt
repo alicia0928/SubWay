@@ -13,6 +13,8 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
 
 class LoginActivity : AppCompatActivity() {
 
@@ -47,7 +49,11 @@ class LoginActivity : AppCompatActivity() {
 
         val stringRequest = object : StringRequest(Request.Method.POST, url,
             Response.Listener<String> { response ->
-                if (response.trim() == "success") {
+                // 변경: 서버 응답에서 경고 메시지를 로깅
+                Log.d("ResponseData", "Response from server: $response")
+
+                // 변경: 로그인 성공 여부 확인
+                if (response.contains("로그인에 성공했습니다!")) {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -61,11 +67,30 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "서버와의 통신 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
             }) {
 
-            override fun getParams(): Map<String, String> {
+            override fun getBody(): ByteArray {
                 val params = HashMap<String, String>()
                 params["user_id"] = username
                 params["user_pw"] = password
-                return params
+
+                // 추가: 안드로이드에서 전송하는 데이터 로그 출력
+                Log.d("RequestData", params.toString())
+
+                return encodeParameters(params, paramsEncoding)
+            }
+
+            private fun encodeParameters(params: Map<String, String>, paramsEncoding: String): ByteArray {
+                val encodedParams = StringBuilder()
+                try {
+                    for ((key, value) in params) {
+                        encodedParams.append(URLEncoder.encode(key, paramsEncoding))
+                        encodedParams.append('=')
+                        encodedParams.append(URLEncoder.encode(value, paramsEncoding))
+                        encodedParams.append('&')
+                    }
+                    return encodedParams.toString().toByteArray(charset(paramsEncoding))
+                } catch (uee: UnsupportedEncodingException) {
+                    throw RuntimeException("Encoding not supported: $paramsEncoding", uee)
+                }
             }
         }
 
