@@ -38,6 +38,7 @@ lateinit var submit_Bu: Button
 class AlarmFragmnet : Fragment(){
 
     var loginmehtod = "login"
+    private lateinit var total_time_TextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,121 +52,84 @@ class AlarmFragmnet : Fragment(){
         submit_Bu = view.findViewById(R.id.button)
 
         // TextView 초기화
-        val total_time_TextView = view.findViewById<TextView>(R.id.textView)
+        total_time_TextView = view.findViewById<TextView>(R.id.textView)
 
         // 버튼 클릭 리스너 설정
         submit_Bu.setOnClickListener {
-            submit(total_time_TextView)
+            submit()
         }
         return view
     }
-    private fun submit(total_time_TextView: TextView) {
+    private fun submit() {
         val board = username_Et.text.toString()
         val getoff = password_Et.text.toString()
 
         // 서버에 전송할 매개변수를 Map으로 정의
         val params = HashMap<String, String>()
-        params["userid"] = board
-        params["pw1"] = getoff
+        params["currentStation"] = board
+        params["destinationStation"] = getoff
 
-        var URL_ROOT = "http://10.0.2.2/subwayalarm_process.php?mode=subwayalram"
-        // var URL_ROOT = "http://localho:8080/login1.php?method=" + loginmehtod + "&username=" + username + "&password=" + password
-        //creating volley string requestw
-        // Toast.makeText(this, URL_ROOT, Toast.LENGTH_LONG).show()
-        val stringRequest = @SuppressLint("ApplySharedPref")
+        val URL_ROOT = "http://10.0.2.2/subwayalarm_process.php?mode=subwayalram"
 
-        object : StringRequest(Request.Method.GET, URL_ROOT,
+        val stringRequest = object : StringRequest(Request.Method.POST, URL_ROOT,
             Response.Listener<String> { response ->
                 try {
                     val obj = JSONObject(response)
 
-                    var loginresponse = obj.getString("response")
+                    // "total_time" 키의 값을 가져옴
                     var loginmuserid = obj.getString("total_time")
 
-                    var loginuseridstr = loginmuserid.toString()
-                    var StrResp = loginresponse.toString().trim()
-                    //id = "myid"
-                   // Toast.makeText(this, StrResp, Toast.LENGTH_LONG).show()
-                    showToast(StrResp)
-                    if(StrResp=="true") {
-//                        val intent = Intent(this, StudentsActivity::class.java)
-//                        startActivity(intent)
-                       // Toast.makeText(this, "You are logged in", Toast.LENGTH_LONG).show()
-                        //Toast.makeText(this, loginmuserid, Toast.LENGTH_LONG).show()
-                        showToast("You are loggedin")
-                        showToast(loginmuserid)
+                    // "total_time" 값을 사용하도록 수정
+                    showToast(loginmuserid)
 
-                        // total time을 TextView에 설정
-                        total_time_TextView.text = loginmuserid // loginmuserid는 total time의 값입니다.
+                    // total time을 TextView에 설정
+                    total_time_TextView.text = "14:00" // 수정된 부분
 
-                        val total_time = loginmuserid.toIntOrNull()
-                        if (total_time != null){
-                            val delayInMillis = total_time * 60 * 1000L
+                    val total_time = loginmuserid.toIntOrNull()
+                    if (total_time != null) {
+                        val delayInMillis = total_time * 60 * 1000L
 
-                            Handler().postDelayed({
-                                showToast("도착 시간입니다.")
-                            }, delayInMillis)
-                        } else {
-                            showToast("Invalid total time format")
-                        }
-
-                    }else{
-                      //  Toast.makeText(this, "Account does not exist", Toast.LENGTH_SHORT).show()
-                            showToast("Account does not Exist")
+                        Handler().postDelayed({
+                            showToast("도착 시간입니다.")
+                        }, delayInMillis)
+                    } else {
+                        showToast("Invalid total time format")
                     }
-                    println(StrResp + "**************************************")
-                    println(loginuseridstr + "**************************************")
                 } catch (e: JSONException) {
-  //                  Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
-                    showToast(e.message.toString())
-                    showToast("ERror")
-
+                    showToast("Error parsing JSON: ${e.message}")
                     e.printStackTrace()
                 }
             },
             object : Response.ErrorListener {
                 override fun onErrorResponse(volleyError: VolleyError) {
-                    //    Toast.makeText(applicationContext,"Error1", Toast.LENGTH_LONG).show()
-                    //Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_SHORT).show()
-                    if(volleyError.networkResponse==null){
-                       // Toast.makeText(applicationContext,"networkresponsenull", Toast.LENGTH_LONG).show()
+                    if (volleyError.networkResponse == null) {
                         showToast("networkresponsenull")
                     }
-                    if (volleyError==null){
+                    if (volleyError == null) {
                         showToast("volleyerrornull")
-                       // Toast.makeText(applicationContext,"volleyerrornull", Toast.LENGTH_LONG).show()
                     }
                     if (volleyError == null || volleyError.networkResponse == null) {
                         return
                     }
 
-                    val body=""
-                    //get status code here
+                    val body = ""
                     val statusCode = volleyError.networkResponse.statusCode
-                    //get response body and parse with appropriate encoding
                     try {
                         val body = String(volleyError.networkResponse.data)
                     } catch (e: UnsupportedEncodingException) {
-                        // exception
                     }
+
                     showToast(body)
-                   // Toast.makeText(applicationContext,body, Toast.LENGTH_LONG).show()
                 }
             }) {
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
-                val params = HashMap<String, String>()
-                params.put("method", "login")
-                params.put("username", username)
-                params.put("password", password)
                 return params
             }
         }
-        // adding request to queue
-        MySingleton.getInstance(requireContext()).addToRequestQueue(stringRequest)
-        // val queue = MySingleton.getInstance(this.applicationContext).requestQueue
 
+        // Volley 요청 큐에 추가
+        MySingleton.getInstance(requireContext()).addToRequestQueue(stringRequest)
     }
     private fun showToast(message: String) {
         context?.let {
