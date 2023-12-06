@@ -60,12 +60,15 @@ class AlarmFragmnet : Fragment(){
         return view
     }
     private fun submit(total_time_TextView: TextView) {
-        var username = username_Et.text.toString()
-        var password = password_Et.text.toString()
-        println("username************************" + username)
-        println("password************************" + password)
+        val board = username_Et.text.toString()
+        val getoff = password_Et.text.toString()
 
-        var URL_ROOT = "http://10.0.2.2/login1.php?method=login&username=" + username + "&password=" + password
+        // 서버에 전송할 매개변수를 Map으로 정의
+        val params = HashMap<String, String>()
+        params["userid"] = board
+        params["pw1"] = getoff
+
+        var URL_ROOT = "http://10.0.2.2/subwayalarm_process.php?mode=subwayalram"
         // var URL_ROOT = "http://localho:8080/login1.php?method=" + loginmehtod + "&username=" + username + "&password=" + password
         //creating volley string requestw
         // Toast.makeText(this, URL_ROOT, Toast.LENGTH_LONG).show()
