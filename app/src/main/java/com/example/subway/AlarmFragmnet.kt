@@ -82,8 +82,14 @@ class AlarmFragmnet : Fragment(){
                     // "total_time" 값을 사용하도록 수정
                     showToast(loginmuserid)
 
-                    // total time을 TextView에 설정
-                    total_time_TextView.text = "14:00" // 수정된 부분
+                    val totalMinutes = loginmuserid.toInt()// 서버에서 받은 값, 예를 들어 14분이면 14로 받아왔다고 가정합니다.
+
+                    val minutesDisplay = totalMinutes % 60
+                    val secondsDisplay = 0
+
+                    val formattedTime = String.format("%02d:%02d", minutesDisplay, secondsDisplay)
+
+                    total_time_TextView.text = formattedTime
 
                     val total_time = loginmuserid.toIntOrNull()
                     if (total_time != null) {
